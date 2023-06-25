@@ -1,0 +1,115 @@
+
+.root {
+    -fx-font-family: 'Roboto', sans-serif;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #3f51b5;
+    -fx-text-fill: white;
+    -fx-font-weight: 500;
+}
+
+.button:hover {
+    -fx-background-color: #5c6bc0;
+}
+
+.button:pressed {
+    -fx-background-color: #3949ab;
+}
+
+/* Text Fields */
+.text-field {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #bdbdbd;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-prompt-text-fill: #bdbdbd;
+}
+
+.text-field:focused {
+    -fx-border-color: #3f51b5;
+    -fx-background-color: #ffffff;
+}
+
+/* Labels */
+.label {
+    -fx-font-weight: 500;
+}
+
+/* Checkboxes */
+.checkbox .box {
+    -fx-border-color: #3f51b5;
+}
+
+.checkbox:selected .box {
+    -fx-background-color: #3f51b5;
+}
+
+.checkbox .mark {
+    -fx-background-color: white;
+}
+
+.checkbox:selected .mark {
+    -fx-background-color: #3f51b5;
+}
+
+/* Radio Buttons */
+.radio-button .radio {
+    -fx-background-color: #3f51b5;
+}
+
+.radio-button:selected .radio {
+    -fx-background-color: #3f51b5;
+}
+
+.radio-button .dot {
+    -fx-background-color: white;
+}
+
+.radio-button:selected .dot {
+    -fx-background-color: white;
+}
+
+/* Sliders */
+.slider .track {
+    -fx-background-color: #e0e0e0;
+}
+
+.slider .thumb {
+    -fx-background-color: #3f51b5;
+}
+
+/* Progress Bars */
+.progress-bar .track {
+    -fx-background-color: #e0e0e0;
+}
+
+.progress-bar .bar {
+    -fx-background-color: #3f51b5;
+}
+
+/* ComboBoxes */
+.combo-box .arrow-button {
+    -fx-background-color: #f5f5f5;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #3f51b5;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #ffffff;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+.loginbg{
+    -fx-background-image: url('img/gradient.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100%;
+}
+
+

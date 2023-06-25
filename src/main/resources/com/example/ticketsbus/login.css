@@ -1,0 +1,158 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.metro-ui {
+    -fx-background-color: #333333;
+    -fx-text-fill: #ffffff;
+}
+
+.metro-ui .button {
+    -fx-background-color: #00A4FF;
+    -fx-text-fill: #ffffff;
+}
+
+.metro-ui .button:hover {
+    -fx-background-color: #0091DC;
+}
+
+.metro-ui .button:pressed {
+    -fx-background-color: #0078C0;
+}
+
+.metro-ui .text-field {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+
+.metro-ui .combo-box {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+
+.metro-ui .list-view {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+
+.metro-ui .table-view {
+    -fx-background-color: #ffffff;
+}
+
+.metro-ui .table-view .column-header-background {
+    -fx-background-color: #333333;
+    -fx-text-fill: #ffffff;
+}
+
+.metro-ui .table-view .table-row-cell {
+    -fx-background-color: #ffffff;
+}
+
+.metro-ui .table-view .table-row-cell:odd {
+    -fx-background-color: #f2f2f2;
+}
+
+.metro-ui .slider .track {
+    -fx-background-color: #dddddd;
+}
+
+.metro-ui .slider .thumb {
+    -fx-background-color: #0091DC;
+}
+
+.metro-ui .slider .thumb:hover {
+    -fx-background-color: #0078C0;
+}
+
+.metro-ui .slider .thumb:pressed {
+    -fx-background-color: #0068A4;
+}
+
+.metro-ui .progress-bar {
+    -fx-background-color: #dddddd;
+}
+
+.metro-ui .progress-bar .track {
+    -fx-background-color: #0091DC;
+}
+
+.metro-ui .progress-bar .track-background {
+    -fx-background-color: #dddddd;
+}
+
+.metro-ui .accordion .titled-pane {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+
+.metro-ui .accordion .titled-pane .title {
+    -fx-background-color: #0091DC;
+    -fx-text-fill: #ffffff;
+}
+
+.metro-ui .accordion .titled-pane .title:hover {
+    -fx-background-color: #0078C0;
+}
+
+.metro-ui .accordion .titled-pane .title:expanded {
+    -fx-background-color: #0078C0;
+}
+
+.metro-ui .accordion .titled-pane .content {
+    -fx-background-color: #ffffff;
+}
+
+.metro-ui .tab-pane {
+    -fx-background-color: #ffffff;
+}
+
+.metro-ui .tab-pane .tab-header-area {
+    -fx-background-color: #333333;
+}
+
+.metro-ui .tab-pane .tab .tab-label {
+    -fx-text-fill: #ffffff;
+}
+
+.metro-ui .tab-pane .tab .tab-label:hover {
+    -fx-text-fill: #dddddd;
+}
+
+.metro-ui .tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #0091DC;
+}
+
+.metro-ui .scroll-bar:horizontal {
+    -fx-background-color: #ffffff;
+}
+
+.metro-ui .scroll-bar:vertical {
+    -fx-background-color: #ffffff;
+}
+
+.metro-ui .scroll-bar:horizontal .thumb {
+    -fx-background-color: #dddddd;
+}
+
+.metro-ui .scroll-bar:vertical .thumb {
+    -fx-background-color: #dddddd;
+}
+
+.label {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #0088cc;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0.0, 0, 1);
+}
+
+.label:hover {
+    -fx-background-color: #005580;
+}
+
+.label:pressed {
+    -fx-background-color: #003d5c;
+}
+

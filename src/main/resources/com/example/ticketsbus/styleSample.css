@@ -1,0 +1,135 @@
+.bk {
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-attachment: fixed;
+}
+
+.t2 {
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-attachment: fixed;
+}
+
+.mercedes {
+    -fx-background-image: url("img/pexels-craig-adderley-1534833.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-attachment: fixed;
+}
+
+.road {
+    -fx-background-image: url("img/road.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-attachment: fixed;
+}
+
+.admin {
+    -fx-background-image: url("img/1079304.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-attachment: fixed;
+}
+
+.table1 {
+    -fx-background-image: url("img/1079304.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-attachment: fixed;
+}
+
+.darkblue {
+    -fx-background-color:
+            #0078D7,
+            linear-gradient(#0078D7 0%, #0063B1 20%, #004F8D 100%),
+            linear-gradient(#0063B1, #004F8D),
+            radial-gradient(center 50% 0%, radius 100%, rgba(70, 160, 220, 0.9), rgba(20, 80, 130, 0));
+    -fx-background-radius: 5, 4, 3, 5;
+    -fx-background-insets: 0, 1, 2, 0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+}
+
+.darkblue:hover {
+    -fx-background-color:
+            #005A9E,
+            linear-gradient(#005A9E 0%, #00467A 20%, #003656 100%),
+            linear-gradient(#00467A, #003656),
+            radial-gradient(center 50% 0%, radius 100%, rgba(100, 180, 230, 0.9), rgba(30, 100, 150, 0));
+    -fx-text-fill: linear-gradient(white, #D0D0D0);
+}
+
+.darkblue Text {
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.9), 1, 0.0, 0, 1);
+}
+
+.darkblue1 {
+    -fx-background-color:
+            #0078D7,
+            linear-gradient(#0078D7 0%, #0063B1 20%, #004F8D 100%),
+            linear-gradient(#0063B1, #004F8D),
+            radial-gradient(center 50% 0%, radius 100%, rgba(70, 160, 220, 0.9), rgba(20, 80, 130, 0));
+    -fx-background-radius: 5, 4, 3, 5;
+    -fx-background-insets: 0, 1, 2, 0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+}
+
+.darkblue1:hover {
+    -fx-background-color:
+            #005A9E,
+            linear-gradient(#005A9E 0%, #00467A 20%, #003656 100%),
+            linear-gradient(#00467A, #003656),
+            radial-gradient(center 50% 0%, radius 100%, rgba(100, 180, 230, 0.9), rgba(30, 100, 150, 0));
+    -fx-text-fill: linear-gradient(white, #D0D0D0);
+}
+
+.darkblue1 Text {
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.9), 1, 0.0, 0, 1);
+}
+
+.darkblue22 {
+    -fx-background-color: linear-gradient(to bottom, #0078D7, #004F8D);
+    -fx-background-radius: 5, 4, 3, 5;
+    -fx-background-insets: 0, 1, 2, 0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+}
+
+.darkblue22:hover {
+    -fx-background-color: linear-gradient(to bottom, #005A9E, #003656);
+    -fx-text-fill: linear-gradient(white, #A0A0A0);
+}
+
+.darkblue2 Text {
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.9), 1, 0.0, 0, 1);
+}
+
+.box {
+    -fx-effect: dropshadow(one-pass-box, #00BFFF, 20, 1.0, 0, 1);
+}
+
+.seat {
+    -fx-background-color: linear-gradient(to bottom, #0078D7, #004F8D);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+
+.seat:hover {
+    -fx-background-color: linear-gradient(to bottom, #005A9E, #003656);
+    -fx-text-fill: linear-gradient(white, #A0A0A0);
+}
+
+.anchor-pane {
+    -fx-background-image: url('img/gradient.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100%;
+}
