@@ -1,6 +1,8 @@
 package com.example.ticketsbus;
 
 import com.example.ticketsbus.connectivity.ConnectionClass;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +16,23 @@ public class DataAccessObject {
     public DataAccessObject(){
 
     }
+
+    public ObservableList<Booking> getBookingData(String query){
+        ObservableList<Booking> list = FXCollections.observableArrayList();
+        try {
+            connect = database.getConnection();
+            pstmt = connect.prepareStatement(query);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                list.add(new Booking(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 
     public void saveData(String query){
         try{

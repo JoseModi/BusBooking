@@ -99,6 +99,8 @@ public class BusController implements Initializable {
 
     private DataAccessObject dao;
 
+    private DataAccessObject doa;
+
     private String naMe;
     private String pHone;
     private String soUrce;
@@ -133,9 +135,31 @@ public class BusController implements Initializable {
     private String serve;
 
 
+    @FXML
+    private TableView<Booking> booKings;
+    @FXML
+    private TableColumn<Booking, String> bookName;
+    @FXML
+    private TableColumn<Booking, String> bookPhone;
+    @FXML
+    private TableColumn<Booking, String> bookSource;
+    @FXML
+    private TableColumn<Booking, String> bookDest;
+    @FXML
+    private TableColumn<Booking, String> bookService;
+    @FXML
+    private TableColumn<Booking, String> bookDate;
+    @FXML
+    private TableColumn<Booking, String> bookSeat;
+    @FXML
+    private TableColumn<Booking, String> bookAmount;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        initBooking();
+        dao = new DataAccessObject();
+        doa = new DataAccessObject();
         seats.getCheckModel().getCheckedItems().addListener((ListChangeListener<String>) c -> {
             StringBuilder selectedSeats = new StringBuilder();
             for (String seat : seats.getCheckModel().getCheckedItems()) {
@@ -150,13 +174,17 @@ public class BusController implements Initializable {
             try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bus", "root", "")) {
                 // Prepare the SQL update statement
                 String updateQuery = "UPDATE seat_names SET picked = 1 WHERE seatname IN (" + selectedSeats.toString() + ")";
+                String updateQ = "UPDATE seat_names SET uname = '"+fileContent+"' WHERE seatname IN (" + selectedSeats.toString() + ")";
 
                 // Create a prepared statement
                 PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+                PreparedStatement prepared = connection.prepareStatement(updateQ);
 
                 // Execute the update statement
                 int rowsUpdated = preparedStatement.executeUpdate();
+                int rowsUpdate = prepared.executeUpdate();
                 System.out.println("Rows updated: " + rowsUpdated);
+                System.out.println("Users updated: " + rowsUpdate);
                 seats.disableProperty();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -168,7 +196,6 @@ public class BusController implements Initializable {
 
         filePath = "data.txt";
         fileContent = readFileToString(filePath);
-        dao = new DataAccessObject();
         bookSeats.setOnAction(e->{
             saveBooking();
             seats.setDisable(false);
@@ -204,19 +231,39 @@ public class BusController implements Initializable {
         });
         tableview.setOnMouseClicked(e->{
             try{
-                Service service = tableview.getItems().get(tableview.getSelectionModel().getSelectedIndex());
-                sourcelabel.setText(service.getSource());
-                serlabel.setText(service.getService());
-                serve = serlabel.getText();
-                lblPhone.setText(contactNo.getText());
-                dlabel.setText(service.getDestination());
-                flabel.setText(String.valueOf(service.getFare()));
-                datelabel.setText(String.valueOf(service.getDt()));
-                userName.setText(fileContent);
-                seats.setVisible(true);
-                seatcount.setVisible(true);
-                seatlabel.setVisible(true);
-                loadSeats();
+                    Service service = tableview.getItems().get(tableview.getSelectionModel().getSelectedIndex());
+                    sourcelabel.setText(service.getSource());
+                    serlabel.setText(service.getService());
+                    serve = serlabel.getText();
+                    lblPhone.setText(contactNo.getText());
+                    dlabel.setText(service.getDestination());
+                    flabel.setText(String.valueOf(service.getFare()));
+                    datelabel.setText(String.valueOf(service.getDt()));
+                    userName.setText(fileContent);
+                    seats.setVisible(true);
+                    seatcount.setVisible(true);
+                    seatlabel.setVisible(true);
+                if(isBookingExists(userName.getText(), datelabel.getText())) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setAlertType(Alert.AlertType.INFORMATION);
+                    alert.setContentText("You have Already made a booking");
+                    alert.show();
+                    userName.setText("");
+                    lblPhone.setText("");
+                    sourcelabel.setText("");
+                    dlabel.setText("");
+                    serlabel.setText("");
+                    datelabel.setText("");
+                    from.getSelectionModel().clearSelection();
+                    to.getSelectionModel().clearSelection();
+                    datE.getSelectionModel().clearSelection();
+                    contactNo.setText("");
+                    flabel.setText("");
+                    seats.hide();
+                    seats.setDisable(true);
+                }else{
+                    loadSeats();
+                }
             } catch(Exception v){
                 System.out.println("You did not select a row");
             }
@@ -244,7 +291,10 @@ public class BusController implements Initializable {
                 dashboard.setVisible(false);
             }
             Bookings.setVisible(true);
+            refreshBooking();
         });
+
+
     }
 
     private void saveBooking() {
@@ -278,7 +328,7 @@ public class BusController implements Initializable {
         ResultSet rS;
         PreparedStatement PST;
         try{
-            PST = connection.prepareStatement("select * from seat_names where picked = 0 AND service='"+serve+"'");
+            PST = connection.prepareStatement("select * from seat_names where picked = 0 AND service='"+serve+"' AND uname !='"+userName.getText()+"'");
             rS = PST.executeQuery();
             while (rS.next()) {
                 String Seat = rS.getString("seatname");
@@ -426,6 +476,23 @@ public class BusController implements Initializable {
         int count = dao.getCount(checkQuery);
 
         return count > 0;
+    }
+
+    public void refreshBooking(){
+        initBooking();
+        query = "select name, phone, source, destination, service, date, seats, amount from bookings where name='"+fileContent+"'";
+        booKings.setItems(dao.getBookingData(query));
+    }
+
+    public void initBooking(){
+        bookName.setCellValueFactory(cell -> cell.getValue().getName());
+        bookPhone.setCellValueFactory(cell -> cell.getValue().getPhone());
+        bookSource.setCellValueFactory(cell -> cell.getValue().getSource());
+        bookDest.setCellValueFactory(cell -> cell.getValue().getDestination());
+        bookService.setCellValueFactory(cell ->cell.getValue().getService());
+        bookDate.setCellValueFactory(cell -> cell.getValue().getDate());
+        bookSeat.setCellValueFactory(cell -> cell.getValue().getSeats());
+        bookAmount.setCellValueFactory(cell -> cell.getValue().getAmount());
     }
 
 }

@@ -74,10 +74,8 @@ public class Controller implements Initializable {
                     parent = loader.load();
                     Scene scene = new Scene(parent);
                     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    window.centerOnScreen();
                     window.setScene(scene);
                     window.show();
-
 
                 } else {
                     Alert alert = new Alert(Alert.AlertType.NONE);
