@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="slip" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="27228604-edba-47c6-bfd0-31d983de9c63">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="183" y="7" width="200" height="28" uuid="46923fb7-52ea-42b6-8518-c37160ef6b83"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MGM ENGLISH MEDIUM SCHOOL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="35" width="187" height="15" uuid="eff0e115-9c0b-4ae7-bfc2-4a287818219e"/>
+				<text><![CDATA[Sangore Betma Road, Mamlaka Building]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="116" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="30" width="130" height="20" uuid="b0969a76-a92c-4d3a-9f73-25997942a343"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Salary slip for the month of]]></text>
+			</staticText>
+			<line>
+				<reportElement x="130" y="49" width="100" height="1" uuid="3ad03f31-962c-4aa9-a02c-1e32b842718d"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#030303"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="-10" y="90" width="60" height="19" uuid="ed5c5378-6c55-44cf-8963-4d71c513e3e6"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Designation]]></text>
+			</staticText>
+			<line>
+				<reportElement x="50" y="109" width="60" height="1" uuid="7b1865c2-592e-481b-9fec-4c59850c1bc9"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#030303"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="-10" y="60" width="50" height="20" uuid="9abbc34e-6992-4bc1-a7df-f02a28f3246c"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="30" width="49" height="15" uuid="fc6f36cb-01e7-427c-937e-49fab6cdf476">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No of days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="30" width="69" height="15" uuid="58ef4d4c-2de8-4651-b9ee-6770013e8642">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Present Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="30" width="50" height="15" uuid="0de71c3d-291e-4d99-9f81-04b5dac95413">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Leave]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="370" y="45" width="48" height="21" uuid="dbbbf71c-0629-43c0-9171-a42cdbc11346"/>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="45" width="69" height="21" uuid="c361d8ec-4327-4071-bec9-e4fb9e5b5068"/>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="45" width="50" height="21" uuid="95255671-0710-45d5-819d-1fb0ae51ac58"/>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="284" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="100" height="20" uuid="499efebe-e222-4403-a807-9f5503f5d5d5"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Basic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="100" height="20" uuid="06b797f5-d769-4ad5-8394-450f95f098ac"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[G.P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="100" height="20" uuid="2bd3ef52-faba-4cc4-9997-f251e9c4cfc3"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[D.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="70" width="100" height="20" uuid="c40460e3-6832-490b-bb46-3eb06a603cd5"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Sp. Al.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="100" height="20" uuid="d2dc30cb-3e12-467d-bb91-77eaf744e27e"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Oth. Al.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="110" width="100" height="20" uuid="f640b714-9dcc-4f85-8601-d9d8d844efb6"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Leave De.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="130" width="100" height="20" uuid="a3e1ac18-edef-4e4d-a1f3-673d94bc49e0"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="150" width="100" height="20" uuid="7991321a-a942-4c4b-9bea-67ac9bba0e57"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Arrier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="170" width="100" height="20" uuid="8c76e5e1-5de1-4e9f-9879-9cbb65194e13"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Basic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="190" width="100" height="20" uuid="2ade576d-0987-460f-847a-6001988485a8"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[D.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="10" width="100" height="20" uuid="15e95ed5-953d-48c5-8cb5-383d7158b3ee"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[P.F]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="30" width="100" height="20" uuid="62a47e20-7dde-449d-b08f-b119d4260d7c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[T.D.S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="50" width="100" height="20" uuid="31456609-e8ec-458a-b6f1-2a2e112da01b"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[D.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="70" width="100" height="20" uuid="03408a4e-c738-4806-b460-6ae699134d8e"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Sp. Al.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="5" width="120" height="20" uuid="f3f4df74-c2c8-46ee-a2d6-17b475bfc663"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Total pay for the month]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

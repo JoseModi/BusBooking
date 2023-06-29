@@ -4,6 +4,13 @@ module com.example.ticketsbus {
     requires java.sql;
     requires com.jfoenix;
     requires org.controlsfx.controls;
+    requires barcodes;
+    requires kernel;
+    requires layout;
+    requires java.desktop;
+    requires PdfInvoiceCreator;
+    requires lombok;
+    requires io;
 
 
     opens com.example.ticketsbus to javafx.fxml;

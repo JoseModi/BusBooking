@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Buses" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="591718cf-2aaa-4fcd-8afa-2c161537ddc6">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Bus System"/>
+	<parameter name="Name" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Phone" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Source" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Destination" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Service" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Date" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Seats" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Amount" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM bookings]]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookings"/>
+	</field>
+	<field name="phone" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="phone"/>
+		<property name="com.jaspersoft.studio.field.label" value="phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookings"/>
+	</field>
+	<field name="source" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="source"/>
+		<property name="com.jaspersoft.studio.field.label" value="source"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookings"/>
+	</field>
+	<field name="destination" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="destination"/>
+		<property name="com.jaspersoft.studio.field.label" value="destination"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookings"/>
+	</field>
+	<field name="service" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="service"/>
+		<property name="com.jaspersoft.studio.field.label" value="service"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookings"/>
+	</field>
+	<field name="date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="date"/>
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookings"/>
+	</field>
+	<field name="seats" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="seats"/>
+		<property name="com.jaspersoft.studio.field.label" value="seats"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookings"/>
+	</field>
+	<field name="amount" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookings"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="92" splitType="Stretch">
+			<staticText>
+				<reportElement x="284" y="10" width="234" height="30" uuid="9b4d2060-ec07-416c-8f68-f7e754558ce4"/>
+				<textElement textAlignment="Center">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Mainstream Buses Receipt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="52" width="147" height="30" uuid="002d443b-ed98-41e0-adca-c43451223f28"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Mamlaka Rd, Opp Nairobi Primary Sch, P.O BOX 00100 38293]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="14" width="30" height="16" uuid="013857ef-0521-4137-8435-8c45f8ea9366"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="120" y="14" width="100" height="16" uuid="8157486a-8161-4aa0-a77d-96b325e24638"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="670" y="14" width="30" height="16" uuid="0d2689c0-99cd-435d-a532-ed9a1fdf88e9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="702" y="13" width="100" height="19" uuid="48ed352a-98a7-406a-88d1-2faac25223b0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="218" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="20" width="67" height="30" uuid="098664bd-ed73-4b90-98f5-299a6ae3d1ca"/>
+				<textElement textAlignment="Left">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="67" height="30" uuid="038b6bed-40b9-4c4c-b041-5f52a153df74"/>
+				<textElement textAlignment="Left">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="94" width="67" height="30" uuid="c8575bda-84ae-4f1a-8234-78ba5b00f9d8"/>
+				<textElement textAlignment="Left">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Source]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="110" height="30" uuid="34874c12-0c00-4729-a777-9168c51d4ba8"/>
+				<textElement textAlignment="Left">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destination]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="20" width="100" height="30" uuid="00891d51-02b9-4550-b275-f2faa60bc084"/>
+				<textElement textAlignment="Left">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Service]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="60" width="100" height="30" uuid="d1473eba-7bd9-4288-a204-af386716f2c7"/>
+				<textElement textAlignment="Left">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="94" width="100" height="30" uuid="27223129-6f9e-4206-a69d-8493724d1e3a"/>
+				<textElement textAlignment="Left">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Seats]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="140" width="100" height="30" uuid="39a5954b-b453-4586-a074-89b5e73fe0f9"/>
+				<textElement textAlignment="Left">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="20" width="100" height="30" uuid="d8d76f07-d4db-4ab1-8877-d61fab5a2446"/>
+				<textElement>
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="60" width="130" height="30" uuid="2e377faf-0a6a-4e7a-bf02-77b5f6fa5e53"/>
+				<textElement>
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="94" width="140" height="30" uuid="550954b3-2f86-4b6f-955a-5bf2ac3c6f75"/>
+				<textElement>
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Source}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="140" width="150" height="30" uuid="42b79323-7e06-47c8-ad6e-c900fcb994c8"/>
+				<textElement>
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Destination}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="20" width="210" height="30" uuid="be6279d9-268a-4877-bfcb-75a4c64243ab"/>
+				<textElement>
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Service}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -23,6 +23,9 @@ public class Booking {
         this.seats = new SimpleStringProperty(seats);
         this.amount = new SimpleStringProperty(amount);
     }
+    public Booking build(){
+        return this;
+    }
     public StringProperty getName(){return name;}
     public StringProperty getPhone(){return phone;}
     public StringProperty getSource(){return source;}

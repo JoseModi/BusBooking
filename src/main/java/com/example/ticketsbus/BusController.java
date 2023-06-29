@@ -1,6 +1,13 @@
 package com.example.ticketsbus;
 
+import com.example.ticketsbus.model.BookinDetails;
+import com.example.ticketsbus.model.HeaderDetails;
+import com.codingerror.model.ProductTableHeader;
+import com.codingerror.model.Product;
 import com.example.ticketsbus.connectivity.ConnectionClass;
+
+
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -14,17 +21,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import com.jfoenix.controls.JFXButton;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import java.sql.*;
-import java.util.ResourceBundle;
-
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckComboBox;
+
+
+import java.io.*;
+import java.net.URL;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import com.codingerror.service.CodingErrorPdfInvoiceCreator;
+
 
 public class BusController implements Initializable {
 
@@ -66,6 +79,8 @@ public class BusController implements Initializable {
 
     ResultSet resultSet;
     PreparedStatement pst;
+
+
 
     @FXML
     private CheckComboBox<String> seats;
@@ -134,6 +149,9 @@ public class BusController implements Initializable {
 
     private String serve;
 
+    @FXML
+    private Button printReport;
+
 
     @FXML
     private TableView<Booking> booKings;
@@ -153,6 +171,26 @@ public class BusController implements Initializable {
     private TableColumn<Booking, String> bookSeat;
     @FXML
     private TableColumn<Booking, String> bookAmount;
+
+
+    String nm,num,src,dest,se,dt,sts,tot;
+
+    @FXML
+    private Label bookingName;
+    @FXML
+    private Label bookingPhone;
+    @FXML
+    private Label bookingSource;
+    @FXML
+    private Label bookingDest;
+    @FXML
+    private Label bookingServ;
+    @FXML
+    private Label bookingDate;
+    @FXML
+    private Label bookingSeats;
+    @FXML
+    private Label bookingAmount;
 
 
     @Override
@@ -295,7 +333,81 @@ public class BusController implements Initializable {
         });
 
 
+        booKings.setOnMouseClicked(event -> {
+            Booking book = booKings.getItems().get(booKings.getSelectionModel().getSelectedIndex());
+            nm = String.valueOf(book.getName());
+            num = String.valueOf(book.getPhone());
+            src = String.valueOf(book.getSource());
+            dest = String.valueOf(book.getDestination());
+            se = book.getService().toString();
+            dt = book.getDate().toString();
+            sts = book.getSeats().toString();
+            tot = book.getAmount().toString();
+
+            bookingName.setText(nm.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+            bookingPhone.setText(num.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+            bookingSource.setText(src.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+            bookingDest.setText(dest.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+            bookingServ.setText(se.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+            bookingDate.setText(dt.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+            bookingSeats.setText(sts.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+            bookingAmount.setText(tot.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+            printReport.setVisible(true);
+        });
+
+        printReport.setOnAction(r->{
+            LocalDate ld = LocalDate.now();
+
+
+            // Let the user choose the location and name of the PDF
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setInitialFileName(ld + ".pdf");
+            fileChooser.setTitle("Save PDF");
+            File file = fileChooser.showSaveDialog(null);
+            if (file != null) {
+                String pdfName = file.getAbsolutePath();
+
+                CodingErrorPdfInvoiceCreator cepdf = new CodingErrorPdfInvoiceCreator(pdfName);
+                try {
+                    cepdf.createDocument();
+
+                    // Create Header start
+                    HeaderDetails header = new HeaderDetails();
+                    header.setInvoiceNo("RK35623").setInvoiceDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))).build();
+                    cepdf.createHeader(header);
+
+                    BookinDetails bookinDetails = new BookinDetails();
+                    bookinDetails
+                            .setBillingCompany("Mainstream Travels")
+                            .setBillingName(nm.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"))
+                            .setBillingAddress(src.replaceAll("StringProperty \\[value: (.*?)\\]", "$1") + "\n To\n" + dest.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"))
+                            .setBillingEmail(num.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"))
+                            .setShippingName(se.replaceAll("StringProperty \\[value: (.*?)\\]", "$1") + "\n")
+                            .setShippingAddress(tot.replaceAll("StringProperty \\[value: (.*?)\\]", "$1") + " kshs")
+                            .build();
+
+                    cepdf.createAddress(bookinDetails);
+
+                    // Term and Condition Start
+                    List<String> TncList = new ArrayList<>();
+                    TncList.add("1. The Seller shall not be liable to the Buyer directly or indirectly for any loss or damage suffered by the Buyer.");
+                    TncList.add("2. The Seller warrants the product for one (1) year from the date of shipment");
+                    String imagePath = "C:\\Users\\odhis\\IdeaProjects\\TicketsBus\\src\\main\\resources\\com\\example\\ticketsbus\\img\\ce_logo_circle_transparent.png";
+                    cepdf.createTnc(TncList, false, imagePath);
+                    // Term and condition end
+                    System.out.println("PDF generated");
+                    loadFXMLAndSetScene("book.fxml", r);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+
     }
+
+
+
 
     private void saveBooking() {
         naMe = userName.getText();
@@ -463,6 +575,7 @@ public class BusController implements Initializable {
             Parent parent = FXMLLoader.load(getClass().getResource(fxmlFilePath));
             Scene scene = new Scene(parent);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.centerOnScreen();
             window.setScene(scene);
             window.show();
         } catch (IOException e) {
@@ -496,3 +609,4 @@ public class BusController implements Initializable {
     }
 
 }
+
