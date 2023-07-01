@@ -1,6 +1,7 @@
 package com.example.ticketsbus;
 
 import com.example.ticketsbus.connectivity.ConnectionClass;
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -54,6 +56,21 @@ public class Controller implements Initializable {
 
     ResultSet resultSet = null;
     PreparedStatement pst = null;
+
+    @FXML
+    private AnchorPane log;
+
+    @FXML
+    private AnchorPane sig;
+    @FXML
+    private Button signupBTN;
+    @FXML
+    private Button signupLogin;
+    @FXML
+    private Button btnCancel;
+
+    @FXML
+    private JFXButton backToLogin;
 
     @FXML
     void adminlogin(ActionEvent event) {
@@ -168,12 +185,34 @@ public class Controller implements Initializable {
 
     @FXML
     void signup(ActionEvent event) {
-
+        fadeOut(log);
+        fadeIn(sig);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        backToLogin.setOnAction(e->{
+            fadeOut(sig);
+            fadeIn(log);
+        });
 
+
+    }
+
+    private void fadeOut(AnchorPane pane) {
+        FadeTransition fadeOut = new FadeTransition(Duration.millis(100), pane);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.play();
+        fadeOut.setOnFinished(e -> pane.setVisible(false));
+    }
+
+    private void fadeIn(AnchorPane pane) {
+        pane.setVisible(true);
+        FadeTransition fadeIn = new FadeTransition(Duration.millis(500), pane);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+        fadeIn.play();
     }
 
     private void writeUsernameToFile(String username) throws IOException {
