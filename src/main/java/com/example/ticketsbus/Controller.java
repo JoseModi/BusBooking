@@ -4,6 +4,7 @@ import com.example.ticketsbus.connectivity.ConnectionClass;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -13,9 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -29,10 +28,7 @@ import javafx.util.Duration;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,9 +64,64 @@ public class Controller implements Initializable {
     private Button signupLogin;
     @FXML
     private Button btnCancel;
+    @FXML
+    private Button navbar;
 
     @FXML
     private JFXButton backToLogin;
+    private FadeTransition buttonFadeInTransition;
+    private FadeTransition signupFadeInTransition;
+    private FadeTransition adminloginFadeInTransition;
+
+    private FadeTransition usernamefadeinTransition;
+
+    private FadeTransition userpasswordfadeinTransition;
+    @FXML
+    private Text userloginLabel;
+    @FXML
+    private Text adminLoginLabel;
+    @FXML
+    private TextField adminUsername;
+    @FXML
+    private TextField adminPassword;
+
+    @FXML
+    private Button userControlsBTN;
+
+    @FXML
+    private Button adminLog;
+
+    @FXML
+    private TextField txtFirstName;
+    @FXML
+    private TextField txtLastName;
+    @FXML
+    private TextField txtMail;
+    @FXML
+    private TextField txtPhone;
+    @FXML
+    private TextField txtAge;
+    @FXML
+    private TextField txtState;
+    @FXML
+    private TextField txtCity;
+    @FXML
+    private TextField txtUname;
+    @FXML
+    private PasswordField txtPassword;
+
+    @FXML
+    private RadioButton male;
+
+    @FXML
+    private RadioButton female;
+
+    @FXML
+    private ToggleGroup gender;
+    String first,last, mail, phone, age, state, city,unam, pass;
+
+
+
 
     @FXML
     void adminlogin(ActionEvent event) {
@@ -185,18 +236,88 @@ public class Controller implements Initializable {
 
     @FXML
     void signup(ActionEvent event) {
+        Stage curr = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        curr.setTitle("Sign Up User");
         fadeOut(log);
         fadeIn(sig);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        backToLogin.setOnAction(e->{
+        btnCancel.setOnAction(r->{
+            refreshSignUp();
+        });
+        signupBTN.setOnAction(e->{
+            ConnectionClass connectionClass = new ConnectionClass();
+            Connection connection = connectionClass.getConnection();
+            getSignupDetails();
+            if(first.isEmpty()||last.isEmpty()||mail.isEmpty()||phone.isEmpty()||age.isEmpty()||state.isEmpty()||city.isEmpty()||unam.isEmpty()||pass.isEmpty()){
+                displayErrorAlert("Blank Field", "Not all fields have been filled");
+                refreshSignUp();
+            }
+            else {
+                try {
+
+                    Statement statement = connection.createStatement();
+
+                    PreparedStatement stmt = connection.prepareStatement("insert into user values (?,?,?,?,?,?,?,?,?,?)");
+                    stmt.setString(1, txtUname.getText());
+                    stmt.setString(2, txtPassword.getText());
+                    stmt.setString(3, txtFirstName.getText());
+                    stmt.setString(4, txtLastName.getText());
+                    stmt.setString(5, txtPhone.getText());
+                    stmt.setString(6, txtAge.getText());
+                    stmt.setString(7, txtState.getText());
+                    stmt.setString(8, txtCity.getText());
+                    if (this.male.isSelected()) {
+                        stmt.setString(9, "Male");
+                    } else {
+                        stmt.setString(9, "Female");
+                    }
+                    stmt.setString(10, txtMail.getText());
+
+                    int status = stmt.executeUpdate();
+                    if (status > 0) {
+                        Alert alert = new Alert(Alert.AlertType.NONE);
+                        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+                        alert.setContentText("Success");
+                        alert.show();
+                        refreshSignUp();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.NONE);
+                        alert.setAlertType(Alert.AlertType.ERROR);
+                        alert.setContentText("Invalid ");
+                        alert.show();
+                        throw new SQLException("Database connection error");
+                    }
+                } catch (SQLException n) {
+                    displayErrorAlert("SQLException", n.getMessage());
+                }
+            }
+        });
+        userSetup();
+        backToLogin.setOnAction(e -> {
+            Stage curr = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            curr.setTitle("User Login");
             fadeOut(sig);
             fadeIn(log);
+            userSetup();
+            fadeLogin();
         });
+    }
 
+    private void fadeLogin() {
+        buttonFadeInTransition = createFadeInTransition(button);
+        signupFadeInTransition = createFadeInTransition(signup);
+        adminloginFadeInTransition = createFadeInTransition(adminlogin);
+        usernamefadeinTransition = createFadeInTransition(textField);
+        userpasswordfadeinTransition = createFadeInTransition(passwordField);
 
+        userpasswordfadeinTransition.play();
+        usernamefadeinTransition.play();
+        buttonFadeInTransition.play();
+        signupFadeInTransition.play();
+        adminloginFadeInTransition.play();
     }
 
     private void fadeOut(AnchorPane pane) {
@@ -215,6 +336,20 @@ public class Controller implements Initializable {
         fadeIn.play();
     }
 
+    private FadeTransition createFadeInTransition(Button button) {
+        FadeTransition transition = new FadeTransition(Duration.seconds(0.5), button);
+        transition.setFromValue(0); // Starting opacity of the button (fully transparent)
+        transition.setToValue(1); // Target opacity of the button (fully visible)
+        return transition;
+    }
+    private FadeTransition createFadeInTransition(TextField textfield) {
+        FadeTransition transition = new FadeTransition(Duration.seconds(0.5), button);
+        transition.setFromValue(0); // Starting opacity of the button (fully transparent)
+        transition.setToValue(1); // Target opacity of the button (fully visible)
+        return transition;
+    }
+
+
     private void writeUsernameToFile(String username) throws IOException {
         try (FileWriter writer = new FileWriter("data.txt")) {
             writer.write(username);
@@ -223,5 +358,82 @@ public class Controller implements Initializable {
             System.out.println("An error occurred while writing to the file.");
             e.printStackTrace();
         }
+    }
+
+    public void adminLogon(ActionEvent actionEvent) {
+        Stage curr = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        curr.setTitle("Admin Login");
+        adminControls();
+    }
+
+    private void adminControls() {
+        adminLoginLabel.setVisible(true);
+        userloginLabel.setVisible(false);
+        adminlogin.setVisible(false);
+        userControlsBTN.setVisible(true);
+        adminUsername.setVisible(true);
+        textField.setVisible(false);
+        adminPassword.setVisible(true);
+        passwordField.setVisible(false);
+        adminLog.setVisible(true);
+        button.setVisible(false);
+    }
+
+    public void userControls(ActionEvent actionEvent) {
+        Stage curr = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        curr.setTitle("User Login");
+        userSetup();
+    }
+
+    private void userSetup() {
+        userloginLabel.setVisible(true);
+        adminLoginLabel.setVisible(false);
+        adminlogin.setVisible(true);
+        userControlsBTN.setVisible(false);
+        textField.setVisible(true);
+        adminUsername.setVisible(false);
+        passwordField.setVisible(true);
+        adminPassword.setVisible(false);
+        adminLog.setVisible(false);
+        button.setVisible(true);
+    }
+
+    private void displayErrorAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+        refreshSignUp();
+    }
+    public void logonAdmin(ActionEvent actionEvent) {
+    }
+
+    public void refreshSignUp(){
+        RadioButton selectedRadioButton = (RadioButton) gender.getSelectedToggle();
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtMail.setText("");
+        txtPhone.setText("");
+        txtAge.setText("");
+        txtState.setText("");
+        txtCity.setText("");
+        txtUname.setText("");
+        txtPassword.setText("");
+        if(selectedRadioButton==male) {
+            gender.selectToggle(male);
+        }
+    }
+
+    public void getSignupDetails(){
+        first = txtFirstName.getText();
+        last = txtLastName.getText();
+        mail = txtMail.getText();
+        phone = txtPhone.getText();
+        age = txtAge.getText();
+        state = txtState.getText();
+        city = txtCity.getText();
+        unam = txtUname.getText();
+        pass = txtPassword.getText();
     }
 }

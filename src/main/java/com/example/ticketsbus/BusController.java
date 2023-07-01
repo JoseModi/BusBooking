@@ -8,9 +8,12 @@ import com.example.ticketsbus.connectivity.ConnectionClass;
 
 
 import com.jfoenix.controls.JFXButton;
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,9 +23,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import org.controlsfx.control.CheckComboBox;
 
 
@@ -35,6 +44,8 @@ import java.util.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.codingerror.service.CodingErrorPdfInvoiceCreator;
 
@@ -191,6 +202,7 @@ public class BusController implements Initializable {
     private Label bookingSeats;
     @FXML
     private Label bookingAmount;
+
 
 
     @Override
@@ -608,5 +620,64 @@ public class BusController implements Initializable {
         bookAmount.setCellValueFactory(cell -> cell.getValue().getAmount());
     }
 
+
+
+    private Stage createSplashStage() {
+        Image logoImage = new Image("C:\\Users\\odhis\\IdeaProjects\\TicketsBus\\src\\main\\resources\\com\\example\\ticketsbus\\img\\ce_logo_circle_transparent.png");
+        ImageView logoImageView = new ImageView(logoImage);
+
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), logoImageView);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.0);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.setCycleCount(Timeline.INDEFINITE);
+        fadeTransition.play();
+
+        StackPane splashRoot = new StackPane(logoImageView);
+        Scene splashScene = new Scene(splashRoot, 300, 200);
+        Stage splashStage = new Stage();
+        splashStage.initStyle(StageStyle.UNDECORATED);
+        splashStage.setScene(splashScene);
+        return splashStage;
+    }
+
+    private void showLoginPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.show();
+            newStage.centerOnScreen();
+        } catch (IOException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void logoutCust(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        // Create and show the splash screen stage
+        Stage splashStage = createSplashStage();
+        splashStage.show();
+
+        // Delay the execution of newStage.show() using a separate thread
+        Task<Void> delayTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                Thread.sleep(2000); // Adjust the delay time as needed
+                return null;
+            }
+        };
+        delayTask.setOnSucceeded(e -> {
+            // Close the splash screen stage and show the new stage
+            splashStage.close();
+            showLoginPage();
+        });
+        new Thread(delayTask).start();
+
+        // Close the current stage
+        currentStage.close();
+    }
 }
 
