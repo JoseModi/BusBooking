@@ -11,6 +11,7 @@ module com.example.ticketsbus {
     requires PdfInvoiceCreator;
     requires lombok;
     requires io;
+    requires com.formdev.flatlaf;
 
 
     opens com.example.ticketsbus to javafx.fxml;

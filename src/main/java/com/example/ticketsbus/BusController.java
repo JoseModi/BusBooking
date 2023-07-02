@@ -7,6 +7,9 @@ import com.codingerror.model.Product;
 import com.example.ticketsbus.connectivity.ConnectionClass;
 
 
+
+
+
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
@@ -41,6 +44,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -346,25 +350,29 @@ public class BusController implements Initializable {
 
 
         booKings.setOnMouseClicked(event -> {
-            Booking book = booKings.getItems().get(booKings.getSelectionModel().getSelectedIndex());
-            nm = String.valueOf(book.getName());
-            num = String.valueOf(book.getPhone());
-            src = String.valueOf(book.getSource());
-            dest = String.valueOf(book.getDestination());
-            se = book.getService().toString();
-            dt = book.getDate().toString();
-            sts = book.getSeats().toString();
-            tot = book.getAmount().toString();
+            try{
+                Booking book = booKings.getItems().get(booKings.getSelectionModel().getSelectedIndex());
+                nm = String.valueOf(book.getName());
+                num = String.valueOf(book.getPhone());
+                src = String.valueOf(book.getSource());
+                dest = String.valueOf(book.getDestination());
+                se = book.getService().toString();
+                dt = book.getDate().toString();
+                sts = book.getSeats().toString();
+                tot = book.getAmount().toString();
 
-            bookingName.setText(nm.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
-            bookingPhone.setText(num.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
-            bookingSource.setText(src.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
-            bookingDest.setText(dest.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
-            bookingServ.setText(se.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
-            bookingDate.setText(dt.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
-            bookingSeats.setText(sts.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
-            bookingAmount.setText(tot.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
-            printReport.setVisible(true);
+                bookingName.setText(nm.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+                bookingPhone.setText(num.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+                bookingSource.setText(src.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+                bookingDest.setText(dest.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+                bookingServ.setText(se.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+                bookingDate.setText(dt.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+                bookingSeats.setText(sts.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+                bookingAmount.setText(tot.replaceAll("StringProperty \\[value: (.*?)\\]", "$1"));
+                printReport.setVisible(true);
+            } catch(Exception e){
+                System.out.println("Table mini error");
+            }
         });
 
         printReport.setOnAction(r->{

@@ -1,0 +1,23 @@
+.grid-pane {
+  -fx-background-color: #f0f0f0; /* Set the background color of the GridPane */
+}
+
+.nav-button {
+  -fx-background-color: transparent; /* Set the background color of the buttons as transparent */
+  -fx-text-fill: #333333; /* Set the text color of the buttons */
+  -fx-font-size: 14px; /* Set the font size of the button text */
+  -fx-padding: 10px 20px; /* Set the padding around the button text */
+}
+
+.nav-button:hover {
+  -fx-background-color: #dddddd; /* Set the background color of the buttons when hovered */
+}
+
+.nav-button:pressed {
+  -fx-background-color: #bbbbbb; /* Set the background color of the buttons when pressed */
+}
+
+.nav-button:selected {
+  -fx-background-color: #555555; /* Set the background color of the selected button */
+  -fx-text-fill: #ffffff; /* Set the text color of the selected button */
+}

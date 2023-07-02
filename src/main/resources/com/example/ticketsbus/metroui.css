@@ -1,0 +1,132 @@
+.root {
+    -fx-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Buttons */
+.button {
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-color: #007aff;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+/* Text Fields */
+.text-field {
+    -fx-font-size: 14px;
+    -fx-padding: 8px;
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+}
+
+/* Labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* Table View */
+.table-view {
+    -fx-font-size: 14px;
+}
+
+.table-cell {
+    -fx-padding: 8px;
+}
+
+/* Scrollbars */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .track-background {
+    -fx-background-color: transparent;
+}
+
+/* TableView */
+.table-view {
+    -fx-font-size: 14px;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f5f5f5;
+}
+
+.table-view .column-header {
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 8px;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #333333;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 14px;
+}
+
+.table-row-cell {
+    -fx-padding: 8px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #007aff;
+    -fx-text-fill: white;
+}
+
+.table-cell {
+    -fx-alignment: CENTER_LEFT;
+    -fx-text-fill: #333333;
+}
+
+.grid-pane {
+  -fx-background-color: #f0f0f0; /* Set the background color of the GridPane */
+}
+
+.nav-button {
+  -fx-background-color: transparent; /* Set the background color of the buttons as transparent */
+  -fx-text-fill: #333333; /* Set the text color of the buttons */
+  -fx-font-size: 14px; /* Set the font size of the button text */
+  -fx-padding: 10px 20px; /* Set the padding around the button text */
+}
+
+.nav-button:hover {
+  -fx-background-color: #dddddd; /* Set the background color of the buttons when hovered */
+}
+
+.nav-button:pressed {
+  -fx-background-color: #bbbbbb; /* Set the background color of the buttons when pressed */
+}
+
+.nav-button:selected {
+  -fx-background-color: #555555; /* Set the background color of the selected button */
+  -fx-text-fill: #ffffff; /* Set the text color of the selected button */
+}
