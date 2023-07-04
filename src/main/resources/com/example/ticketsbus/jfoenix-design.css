@@ -1,0 +1,91 @@
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Button style */
+.button {
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-color: #008CBA;
+    -fx-text-fill: white;
+    -fx-border-color: #008CBA;
+    -fx-border-radius: 10px;
+}
+
+/* Button hover style */
+.button:hover {
+    -fx-background-color: #005F6B;
+    -fx-border-color: #005F6B;
+}
+
+/* Text field style */
+.text-field {
+    -fx-background-color: #F2F2F2;
+    -fx-border-color: #C4C4C4;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 14px;
+    -fx-padding: 8px;
+}
+
+/* Text field focus style */
+.text-field:focused {
+    -fx-border-color: #008CBA;
+    -fx-border-width: 2px;
+}
+
+/* Label style */
+.label {
+    -fx-font-size: 14px;
+}
+
+/* Separator style */
+.separator {
+    -fx-background-color: #C4C4C4;
+    -fx-padding: 0.5px 0;
+}
+
+/* Scroll bar style */
+.scroll-bar {
+    -fx-background-color: #C4C4C4;
+}
+
+/* Scroll bar thumb style */
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #008CBA;
+    -fx-border-radius: 10px;
+}
+
+/* Scroll bar thumb hover style */
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #005F6B;
+}
+
+/* Table view style */
+.table-view {
+    -fx-font-size: 14px;
+    -fx-background-color: #FFFFFF;
+}
+
+/* Table cell style */
+.table-cell {
+    -fx-alignment: center;
+    -fx-border-color: #C4C4C4;
+    -fx-border-width: 1px;
+}
+
+/* Table header style */
+.table-header-background {
+    -fx-background-color: #008CBA;
+    -fx-text-fill: white;
+}
+
+/* Table header hover style */
+.table-header-background:hover {
+    -fx-background-color: #005F6B;
+}
+
+/* Table row stripe style */
+.table-row-cell:even {
+    -fx-background-color: #F2F2F2;
+}

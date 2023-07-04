@@ -407,7 +407,41 @@ public class Controller implements Initializable {
         refreshSignUp();
     }
     public void logonAdmin(ActionEvent actionEvent) {
+        String uname = adminUsername.getText();
+        String pwd = adminPassword.getText();
+        if (uname.equals("") || pwd.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please enter both username and password.");
+            alert.show();
+        } else {
+            try {
+                ConnectionClass connectionClass = new ConnectionClass();
+                Connection connection = connectionClass.getConnection();
+                PreparedStatement pst = connection
+                        .prepareStatement("select * from admin where username=? and password=?");
+                pst.setString(1, uname);
+                pst.setString(2, pwd);
+                ResultSet resultSet = pst.executeQuery();
+                if (resultSet.next()) {
+                    Parent parent = FXMLLoader.load(getClass().getResource("admin.fxml"));
+                    Scene scene = new Scene(parent);
+                    Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    currentStage.close();
+                    window.setScene(scene);
+                    window.setTitle("Admin Dashboard");
+                    window.show();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Wrong username or password!");
+                    alert.show();
+                }
+            } catch (IOException | SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 
     public void refreshSignUp(){
         RadioButton selectedRadioButton = (RadioButton) gender.getSelectedToggle();
